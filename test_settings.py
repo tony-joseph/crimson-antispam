@@ -114,5 +114,5 @@ STATIC_URL = '/static/'
 # crimson_antispam settings
 
 ANTISPAM_SETTINGS = {
-    'REQUEST_INTERVAL': 1,
+    'REQUEST_INTERVAL': 1000,
 }
