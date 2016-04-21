@@ -8,5 +8,7 @@ urlpatterns = [
 
     url('^blocked-by-decorator/$', views.blocked_by_decorator, name='blocked_by_decorator'),
 
+    url('^throttled_by_decorator/$', views.throttled_by_decorator, name='throttled_by_decorator'),
+
     url(r'^admin/', admin.site.urls),
 ]
