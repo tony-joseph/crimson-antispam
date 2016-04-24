@@ -1,3 +1,4 @@
 include LICENSE
 recursive-include antispam/migrations *
+recursive-include antispam/management *
 recursive-include docs *
