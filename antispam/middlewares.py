@@ -1,4 +1,4 @@
-from django.http import HttpResponseForbidden
+from django.http import HttpResponse
 from django.conf import settings
 from django.utils import timezone
 
@@ -11,7 +11,7 @@ class BlockSpamIPMiddleware(object):
     def process_request(self, request):
         remote_ip = request.META['REMOTE_ADDR']
         if SpamIP.objects.filter(ip_address=remote_ip).exists():
-            return HttpResponseForbidden()
+            return HttpResponse('Access denied: Your IP address is in spam list.', status=403)
 
 
 class ThrottleRequestsMiddleware(object):
@@ -34,7 +34,7 @@ class ThrottleRequestsMiddleware(object):
 
             # Raise 403 if interval is less than allowed interval
             if interval_in_ms < allowed_interval:
-                return HttpResponseForbidden('Access denied: Too much requests from your ip address.')
+                return HttpResponse('Access denied: Too many requests from your IP address.', status=429)
 
         except IPAcessLog.DoesNotExist:
             IPAcessLog.objects.create(ip_address=remote_ip, last_accessed=timezone.now())
