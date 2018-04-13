@@ -4,9 +4,8 @@ Crimson Anit-spam is an anti-spam package for django framework.
 
 ## Requirements
 
-Crimson antispam supports python versions 2.7, 3.3, 3.4 and 3.5. Django 1.7,
-1.8 and 1.9 are supported out of the box. Crimson antispam requires django
-migrations hence it will not work on django versions prior to 1.7
+Crimson antispam supports python versions 2.7, 3.3, 3.4 and 3.5. Django 1.10,
+1.11 and 2.0 are supported out of the box. Django versions prior to 1.10 are not supported.
 
 ## Installation
 
@@ -183,9 +182,14 @@ You can check spam ip address in template as follows.
 ### Throttling requests
 
 With crimson anti-spam, you can restrict the number of requests from an IP
-address if the requests are happening in quick succession. The default time
-difference required between two requests is 1000 milliseconds.  You can
-override it in your settings as follows
+address if the requests are happening in quick succession.
+
+For detecting remote IP address, crimson antispam looks for the REMOTE_ADDR 
+header in request. If you are using a reverse proxy, please make sure you are
+forwarding the appropriate headers to django. 
+
+The default time difference required between two requests is 1000 milliseconds. 
+You can override it in your settings as follows
 
 ```
 ANTISPAM_SETTINGS = {
